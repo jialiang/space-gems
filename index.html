@@ -42,7 +42,7 @@
         height: 100%;
         margin: 0;
 
-        background: url(image/bg.jpg) center bottom/cover;
+        background: #503f24 url(image/bg.progressive.jpg) center bottom/cover;
       }
 
       #game {
@@ -1142,7 +1142,7 @@
 
               var currentScore = this.score.current.state.value || 0;
 
-              if (currentScore < 80000) {
+              if (currentScore < 8000) {
                 this.setState({
                   showMenu: true,
                   menuMessage: "Game Over!"

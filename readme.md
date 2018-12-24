@@ -1,4 +1,4 @@
-##Space Gems
+# Space Gems
 
 Space Gem is a relaxing tile-matching game reminiscence of simpler times when games of this genre did not come bundled with micro-transactions and in-app advertisements.
 
