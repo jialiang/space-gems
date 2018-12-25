@@ -277,6 +277,18 @@ class Board extends React.Component {
       e.preventDefault();
     });
 
+    this.ref.current.addEventListener("touchstart", e => {
+      if (!this.end) self.activeGem = e.target;
+    });
+
+    this.ref.current.addEventListener("touchmove", e => {
+      self.moveGem(e, 1);
+    });
+
+    self.ref.current.addEventListener("touchend", e => {
+      self.activeGem = null;
+    });
+
     this.ref.current.addEventListener("mousedown", e => {
       if (!this.end) self.activeGem = e.target;
     });
@@ -290,15 +302,19 @@ class Board extends React.Component {
     });
   }
 
-  moveGem(e) {
-    if (!this.activeGem || e.target === this.activeGem || this.lock) return;
-    if (!e.target.classList.contains("gems")) return (this.activeGem = null);
+  moveGem(e, touch) {
+    var target = e.target;
+
+    if (touch) target = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+
+    if (!this.activeGem || target === this.activeGem || this.lock) return;
+    if (!target.classList.contains("gems")) return (this.activeGem = null);
 
     var r1 = this.activeGem.getAttribute("row");
     var c1 = this.activeGem.getAttribute("col");
 
-    var r2 = e.target.getAttribute("row");
-    var c2 = e.target.getAttribute("col");
+    var r2 = target.getAttribute("row");
+    var c2 = target.getAttribute("col");
 
     if (Math.abs(r1 - r2) + Math.abs(c1 - c2) !== 1) return (this.activeGem = null);
 

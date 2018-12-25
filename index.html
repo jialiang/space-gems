@@ -1140,7 +1140,7 @@
 
               var currentScore = this.score.current.state.value || 0;
 
-              if (currentScore < 8000) {
+              if (currentScore < 80000) {
                 this.setState({
                   showMenu: true,
                   menuMessage: "Game Over!"
@@ -1440,6 +1440,33 @@
           );
 
           this.ref.current.addEventListener(
+            "touchstart",
+            function(e) {
+              _newArrowCheck(this, _this8);
+
+              if (!this.end) self.activeGem = e.target;
+            }.bind(this)
+          );
+
+          this.ref.current.addEventListener(
+            "touchmove",
+            function(e) {
+              _newArrowCheck(this, _this8);
+
+              self.moveGem(e, 1);
+            }.bind(this)
+          );
+
+          self.ref.current.addEventListener(
+            "touchend",
+            function(e) {
+              _newArrowCheck(this, _this8);
+
+              self.activeGem = null;
+            }.bind(this)
+          );
+
+          this.ref.current.addEventListener(
             "mousedown",
             function(e) {
               _newArrowCheck(this, _this8);
@@ -1467,17 +1494,21 @@
           );
         };
 
-        Board.prototype.moveGem = function moveGem(e) {
+        Board.prototype.moveGem = function moveGem(e, touch) {
           var _this9 = this;
 
-          if (!this.activeGem || e.target === this.activeGem || this.lock) return;
-          if (!e.target.classList.contains("gems")) return (this.activeGem = null);
+          var target = e.target;
+
+          if (touch) target = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+
+          if (!this.activeGem || target === this.activeGem || this.lock) return;
+          if (!target.classList.contains("gems")) return (this.activeGem = null);
 
           var r1 = this.activeGem.getAttribute("row");
           var c1 = this.activeGem.getAttribute("col");
 
-          var r2 = e.target.getAttribute("row");
-          var c2 = e.target.getAttribute("col");
+          var r2 = target.getAttribute("row");
+          var c2 = target.getAttribute("col");
 
           if (Math.abs(r1 - r2) + Math.abs(c1 - c2) !== 1) return (this.activeGem = null);
 
