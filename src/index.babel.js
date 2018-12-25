@@ -61,7 +61,7 @@ class Game extends React.Component {
     setTimeout(() => {
       var currentScore = this.score.current.state.value || 0;
 
-      if (currentScore < 80000) {
+      if (currentScore < 8000) {
         this.setState({
           showMenu: true,
           menuMessage: "Game Over!"
@@ -580,7 +580,7 @@ class MenuBox extends React.Component {
         <div>
           <label>
             BGM Volume
-            <input onInput={this.update.bind(this)} type="range" min="0" max="1" step="0.05" value={this.state.bgmVolume} />
+            <input onInput={this.update.bind(this)} onChange={this.update.bind(this)} type="range" min="0" max="1" step="0.05" value={this.state.bgmVolume} />
           </label>
           <button onClick={this.props.onToggleMenu}>Back to Game</button>
           <button onClick={this.props.onNewGame}>New Game</button>

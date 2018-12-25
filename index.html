@@ -1140,7 +1140,7 @@
 
               var currentScore = this.score.current.state.value || 0;
 
-              if (currentScore < 80000) {
+              if (currentScore < 8000) {
                 this.setState({
                   showMenu: true,
                   menuMessage: "Game Over!"
@@ -1834,6 +1834,7 @@
                 "BGM Volume",
                 React.createElement("input", {
                   onInput: this.update.bind(this),
+                  onChange: this.update.bind(this),
                   type: "range",
                   min: "0",
                   max: "1",
