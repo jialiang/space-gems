@@ -1007,6 +1007,8 @@
       var React = preact;
       var ReactDOM = preact;
 
+      ("use strict");
+
       var _extends =
         Object.assign ||
         function(target) {
@@ -1084,7 +1086,7 @@
             key: Date.now()
           };
 
-          _this.bgmVolume = localStorage.getItem("bgmVolume") || 0.5;
+          _this.volume = localStorage.getItem("volume") || 0.5;
           return _this;
         }
 
@@ -1110,8 +1112,8 @@
                 function() {
                   _newArrowCheck(this, _this2);
 
-                  if (this.bgm.volume < this.bgmVolume) this.bgm.volume += this.bgmVolume / 50;
-                  if (this.bgm.volume >= this.bgmVolume) clearInterval(fadeAudio);
+                  if (this.bgm.volume < this.volume) this.bgm.volume += this.volume / 50;
+                  if (this.bgm.volume >= this.volume) clearInterval(fadeAudio);
                 }.bind(this),
                 100
               );
@@ -1123,7 +1125,7 @@
           function onAudioEnd() {
             index = ((index + 1) % 3) + 1;
             self.bgm = document.getElementById("bgm" + index);
-            self.bgm.volume = self.bgmVolume;
+            self.bgm.volume = self.volume;
             self.bgm.play();
             self.bgm.addEventListener("ended", onAudioEnd);
           }
@@ -1145,12 +1147,20 @@
                   showMenu: true,
                   menuMessage: "Game Over!"
                 });
+
+                var gameover = new Audio("sfx/gameover.mp3");
+                gameover.volume = this.volume;
+                gameover.play();
               } else {
                 if ((localStorage.getItem("highscore") || 0) < currentScore) localStorage.setItem("highscore", currentScore);
 
                 this.setState({
                   outro: true
                 });
+
+                var congrats = new Audio("sfx/congratulations.mp3");
+                congrats.volume = this.volume;
+                congrats.play();
               }
             }.bind(this),
             500
@@ -1168,9 +1178,9 @@
 
         Game.prototype.changeVolume = function changeVolume(v) {
           this.bgm.volume = v.target.value;
-          this.bgmVolume = v.target.value;
+          this.volume = v.target.value;
 
-          localStorage.setItem("bgmVolume", v.target.value);
+          localStorage.setItem("volume", v.target.value);
         };
 
         Game.prototype.toggleMenu = function toggleMenu() {
@@ -1196,6 +1206,10 @@
             menuMessage: "Goal: 8000 points",
             key: Date.now()
           });
+
+          var gamestart = new Audio("sfx/gamestart.mp3");
+          gamestart.volume = this.volume;
+          gamestart.play();
         };
 
         Game.prototype.afterIntro = function afterIntro() {
@@ -1204,6 +1218,10 @@
           });
 
           this.playBgm();
+
+          var gamestart = new Audio("sfx/gamestart.mp3");
+          gamestart.volume = this.volume;
+          gamestart.play();
         };
 
         Game.prototype.render = function render() {
@@ -1263,7 +1281,7 @@
                   }),
                   this.state.showMenu &&
                     React.createElement(MenuBox, {
-                      bgmVolume: this.bgmVolume,
+                      volume: this.volume,
                       menuMessage: this.state.menuMessage,
                       onToggleMenu: this.toggleMenu.bind(this),
                       onVolumeChange: this.changeVolume.bind(this),
@@ -1630,7 +1648,13 @@
             gr[m] = React.createElement(Gem, _extends({ key: m }, gr[m].props, { destroy: "1" }));
           }
 
-          if (total.length > 0) this.props.onScoreChange(total);
+          if (total.length > 0) {
+            this.props.onScoreChange(total);
+
+            var ding = new Audio("sfx/ding.mp3");
+            ding.volume = localStorage.getItem("volume") || 0.5;
+            ding.play();
+          }
 
           this.setState(
             {
@@ -1809,14 +1833,14 @@
           var _this15 = _possibleConstructorReturn(this, _React$Component5.call(this, props));
 
           _this15.state = {
-            bgmVolume: _this15.props.bgmVolume
+            volume: _this15.props.volume
           };
           return _this15;
         }
 
         MenuBox.prototype.update = function update(e) {
           this.setState({
-            bgmVolume: e.target.value
+            volume: e.target.value
           });
           this.props.onVolumeChange(e);
         };
@@ -1831,7 +1855,7 @@
               React.createElement(
                 "label",
                 null,
-                "BGM Volume",
+                "Volume",
                 React.createElement("input", {
                   onInput: this.update.bind(this),
                   onChange: this.update.bind(this),
@@ -1839,7 +1863,7 @@
                   min: "0",
                   max: "1",
                   step: "0.05",
-                  value: this.state.bgmVolume
+                  value: this.state.volume
                 })
               ),
               React.createElement("button", { onClick: this.props.onToggleMenu }, "Back to Game"),

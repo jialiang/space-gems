@@ -23,7 +23,7 @@ class Game extends React.Component {
       key: Date.now()
     };
 
-    this.bgmVolume = localStorage.getItem("bgmVolume") || 0.5;
+    this.volume = localStorage.getItem("volume") || 0.5;
   }
 
   gameStart() {
@@ -39,8 +39,8 @@ class Game extends React.Component {
     this.bgm.addEventListener("ended", onAudioEnd);
     this.bgm.addEventListener("play", () => {
       var fadeAudio = setInterval(() => {
-        if (this.bgm.volume < this.bgmVolume) this.bgm.volume += this.bgmVolume / 50;
-        if (this.bgm.volume >= this.bgmVolume) clearInterval(fadeAudio);
+        if (this.bgm.volume < this.volume) this.bgm.volume += this.volume / 50;
+        if (this.bgm.volume >= this.volume) clearInterval(fadeAudio);
       }, 100);
     });
 
@@ -49,7 +49,7 @@ class Game extends React.Component {
     function onAudioEnd() {
       index = ((index + 1) % 3) + 1;
       self.bgm = document.getElementById("bgm" + index);
-      self.bgm.volume = self.bgmVolume;
+      self.bgm.volume = self.volume;
       self.bgm.play();
       self.bgm.addEventListener("ended", onAudioEnd);
     }
@@ -66,12 +66,20 @@ class Game extends React.Component {
           showMenu: true,
           menuMessage: "Game Over!"
         });
+
+        var gameover = new Audio("sfx/gameover.mp3");
+        gameover.volume = this.volume;
+        gameover.play();
       } else {
         if ((localStorage.getItem("highscore") || 0) < currentScore) localStorage.setItem("highscore", currentScore);
 
         this.setState({
           outro: true
         });
+
+        var congrats = new Audio("sfx/congratulations.mp3");
+        congrats.volume = this.volume;
+        congrats.play();
       }
     }, 500);
   }
@@ -86,9 +94,9 @@ class Game extends React.Component {
 
   changeVolume(v) {
     this.bgm.volume = v.target.value;
-    this.bgmVolume = v.target.value;
+    this.volume = v.target.value;
 
-    localStorage.setItem("bgmVolume", v.target.value);
+    localStorage.setItem("volume", v.target.value);
   }
 
   toggleMenu() {
@@ -114,6 +122,10 @@ class Game extends React.Component {
       menuMessage: "Goal: 8000 points",
       key: Date.now()
     });
+
+    var gamestart = new Audio("sfx/gamestart.mp3");
+    gamestart.volume = this.volume;
+    gamestart.play();
   }
 
   afterIntro() {
@@ -122,6 +134,10 @@ class Game extends React.Component {
     });
 
     this.playBgm();
+
+    var gamestart = new Audio("sfx/gamestart.mp3");
+    gamestart.volume = this.volume;
+    gamestart.play();
   }
 
   render() {
@@ -164,7 +180,7 @@ class Game extends React.Component {
           />
           {this.state.showMenu && (
             <MenuBox
-              bgmVolume={this.bgmVolume}
+              volume={this.volume}
               menuMessage={this.state.menuMessage}
               onToggleMenu={this.toggleMenu.bind(this)}
               onVolumeChange={this.changeVolume.bind(this)}
@@ -423,7 +439,13 @@ class Board extends React.Component {
       gr[m] = <Gem key={m} {...gr[m].props} destroy="1" />;
     }
 
-    if (total.length > 0) this.props.onScoreChange(total);
+    if (total.length > 0) {
+      this.props.onScoreChange(total);
+
+      var ding = new Audio("sfx/ding.mp3");
+      ding.volume = localStorage.getItem("volume") || 0.5;
+      ding.play();
+    }
 
     this.setState(
       {
@@ -563,13 +585,13 @@ class MenuBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      bgmVolume: this.props.bgmVolume
+      volume: this.props.volume
     };
   }
 
   update(e) {
     this.setState({
-      bgmVolume: e.target.value
+      volume: e.target.value
     });
     this.props.onVolumeChange(e);
   }
@@ -579,8 +601,8 @@ class MenuBox extends React.Component {
       <div id="menuBox">
         <div>
           <label>
-            BGM Volume
-            <input onInput={this.update.bind(this)} onChange={this.update.bind(this)} type="range" min="0" max="1" step="0.05" value={this.state.bgmVolume} />
+            Volume
+            <input onInput={this.update.bind(this)} onChange={this.update.bind(this)} type="range" min="0" max="1" step="0.05" value={this.state.volume} />
           </label>
           <button onClick={this.props.onToggleMenu}>Back to Game</button>
           <button onClick={this.props.onNewGame}>New Game</button>
