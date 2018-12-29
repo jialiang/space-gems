@@ -13,7 +13,7 @@
     <meta name="last-modified" content="2018-12-26" />
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="canonical" href="https://jialiang.github.io/space-gems" />
+    <link rel="canonical" href="https://jialiang.github.io/space-gems/" />
 
     <style type="text/css">
       @font-face {
@@ -264,8 +264,11 @@
   <body>
     <div id="app" role="application"></div>
 
-    <audio id="bgm1" src="music/Ethereal%20Eternity.mp3" preload></audio> <audio id="bgm2" src="music/Space%20Harmony.mp3" preload></audio>
-    <audio id="bgm3" src="music/Piano%20at%20Night.mp3" preload></audio>
+    <audio id="bgm1" src="music/Ethereal%20Eternity.mp3"></audio> <audio id="bgm2" src="music/Space%20Harmony.mp3"></audio>
+    <audio id="bgm3" src="music/Piano%20at%20Night.mp3"></audio>
+
+    <audio class="sfx1" src="sfx/gamestart.mp3" autoplay muted></audio> <audio class="sfx1" src="sfx/ding.mp3" autoplay muted></audio>
+    <audio class="sfx2" src="sfx/gameover.mp3" muted></audio> <audio class="sfx2" src="sfx/congratulations.mp3" muted></audio>
 
     <script type="text/javascript">
       !(function() {
@@ -1007,8 +1010,6 @@
       var React = preact;
       var ReactDOM = preact;
 
-      ("use strict");
-
       var _extends =
         Object.assign ||
         function(target) {
@@ -1087,6 +1088,24 @@
           };
 
           _this.volume = localStorage.getItem("volume") || 0.5;
+
+          var sfx1 = document.getElementsByClassName("sfx1");
+          var sfx2 = document.getElementsByClassName("sfx2");
+
+          if (sfx1[0].paused) sfx1[0].play();
+          if (sfx1[1].paused) sfx1[1].play();
+
+          loadSfx2();
+
+          sfx1[0].onreadystatechange = loadSfx2;
+          sfx1[1].onreadystatechange = loadSfx2;
+
+          function loadSfx2() {
+            if (sfx1[0].readyState < 4 && sfx1[1].readyState < 4) return;
+
+            sfx2[0].play();
+            sfx2[1].play();
+          }
           return _this;
         }
 
@@ -1095,30 +1114,27 @@
         };
 
         Game.prototype.playBgm = function playBgm() {
-          var _this2 = this;
-
           var self = this;
           var index = Math.floor(Math.random() * 3 + 1);
 
           this.bgm = document.getElementById("bgm" + index);
           this.bgm.volume = 0;
           this.bgm.addEventListener("ended", onAudioEnd);
-          this.bgm.addEventListener(
-            "play",
-            function() {
-              _newArrowCheck(this, _this2);
+          this.bgm.addEventListener("playing", function onAudioPlaying() {
+            var _this2 = this;
 
-              var fadeAudio = setInterval(
-                function() {
-                  _newArrowCheck(this, _this2);
+            self.bgm.removeEventListener("playing", onAudioPlaying);
 
-                  if (this.bgm.volume < this.volume) this.bgm.volume += this.volume / 50;
-                  if (this.bgm.volume >= this.volume) clearInterval(fadeAudio);
-                }.bind(this),
-                100
-              );
-            }.bind(this)
-          );
+            var fadeAudio = setInterval(
+              function() {
+                _newArrowCheck(this, _this2);
+
+                if (self.bgm.volume < self.volume) self.bgm.volume += self.volume / 50;
+                if (self.bgm.volume >= self.volume) clearInterval(fadeAudio);
+              }.bind(this),
+              100
+            );
+          });
 
           this.bgm.play();
 
@@ -1566,6 +1582,8 @@
         Board.prototype.undoMove = function undoMove(i1, i2, r1, r2, c1, c2) {
           var _this10 = this;
 
+          if (this.end) return;
+
           var gemsRender = this.state.gemsRender.slice();
 
           gemsRender[i1] = React.createElement(Gem, _extends({ key: i1 }, gemsRender[i1].props, { row: r1, col: c1 }));
@@ -1588,6 +1606,8 @@
 
         Board.prototype.checkMatch = function checkMatch() {
           var _this11 = this;
+
+          if (this.end) return;
 
           var gr = this.state.gemsRender.slice();
           var gi = this.gemsIndex;
@@ -1680,6 +1700,8 @@
         Board.prototype.moveDown = function moveDown(match) {
           var _this12 = this;
 
+          if (this.end) return;
+
           var gemsRender = this.state.gemsRender.slice();
           var i, j, i1, i2, sorted;
 
@@ -1730,6 +1752,8 @@
 
         Board.prototype.refill = function refill() {
           var _this13 = this;
+
+          if (this.end) return;
 
           var gemsRender = this.state.gemsRender.slice();
           var _props3 = this.props,

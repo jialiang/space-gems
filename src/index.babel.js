@@ -24,6 +24,24 @@ class Game extends React.Component {
     };
 
     this.volume = localStorage.getItem("volume") || 0.5;
+
+    var sfx1 = document.getElementsByClassName("sfx1");
+    var sfx2 = document.getElementsByClassName("sfx2");
+
+    if (sfx1[0].paused) sfx1[0].play();
+    if (sfx1[1].paused) sfx1[1].play();
+
+    loadSfx2();
+
+    sfx1[0].onreadystatechange = loadSfx2;
+    sfx1[1].onreadystatechange = loadSfx2;
+
+    function loadSfx2() {
+      if (sfx1[0].readyState < 4 && sfx1[1].readyState < 4) return;
+
+      sfx2[0].play();
+      sfx2[1].play();
+    }
   }
 
   gameStart() {
@@ -37,10 +55,12 @@ class Game extends React.Component {
     this.bgm = document.getElementById("bgm" + index);
     this.bgm.volume = 0;
     this.bgm.addEventListener("ended", onAudioEnd);
-    this.bgm.addEventListener("play", () => {
+    this.bgm.addEventListener("playing", function onAudioPlaying() {
+      self.bgm.removeEventListener("playing", onAudioPlaying);
+
       var fadeAudio = setInterval(() => {
-        if (this.bgm.volume < this.volume) this.bgm.volume += this.volume / 50;
-        if (this.bgm.volume >= this.volume) clearInterval(fadeAudio);
+        if (self.bgm.volume < self.volume) self.bgm.volume += self.volume / 50;
+        if (self.bgm.volume >= self.volume) clearInterval(fadeAudio);
       }, 100);
     });
 
@@ -361,6 +381,8 @@ class Board extends React.Component {
   }
 
   undoMove(i1, i2, r1, r2, c1, c2) {
+    if (this.end) return;
+
     var gemsRender = this.state.gemsRender.slice();
 
     gemsRender[i1] = <Gem key={i1} {...gemsRender[i1].props} row={r1} col={c1} />;
@@ -380,6 +402,8 @@ class Board extends React.Component {
   }
 
   checkMatch() {
+    if (this.end) return;
+
     var gr = this.state.gemsRender.slice();
     var gi = this.gemsIndex;
     var match = [];
@@ -462,6 +486,8 @@ class Board extends React.Component {
   }
 
   moveDown(match) {
+    if (this.end) return;
+
     var gemsRender = this.state.gemsRender.slice();
     var i, j, i1, i2, sorted;
 
@@ -503,6 +529,8 @@ class Board extends React.Component {
   }
 
   refill() {
+    if (this.end) return;
+
     var gemsRender = this.state.gemsRender.slice();
     var { types, rows, columns } = this.props;
 
