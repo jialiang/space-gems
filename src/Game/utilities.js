@@ -70,32 +70,45 @@ export function dispatchCreator(stateName, reducer) {
 
 export const soundManager = () => {
   let volume = 0.5;
+  const publicUrl = process.env.PUBLIC_URL;
 
   const playlist = ["Ethereal Eternity", "Piano at Night", "Space Harmony"];
   let index = Math.floor(Math.random() * playlist.length);
-  const audios = playlist.map((filename) => {
-    const audio = new Audio(`music/${filename}.mp3`);
-    audio.preload = false;
+
+  const playBgm = () => {
+    let audio = playlist[index];
+    if (!audio.play) {
+      audio = new Audio(`${publicUrl}/music/${audio}.mp3`);
+      audio.onended = () => {
+        index = index + 1 === index.lenght ? 0 : index + 1;
+        playBgm();
+      };
+      playlist[index] = audio;
+    }
     audio.volume = volume;
-    return audio;
-  });
+    audio.play();
+  };
+
+  const pauseBgm = () => {
+    if (playlist[index].pause) playlist[index].pause();
+  };
 
   const sfx = ["5secondsleft", "congratulations", "ding", "gameover", "gamestart", "timesup"];
   sfx.forEach((filename) => {
-    const audio = new Audio(`sfx/${filename}.mp3`);
+    const audio = new Audio(`${publicUrl}/sfx/${filename}.mp3`);
     audio.preload = true;
   });
 
   return {
-    playBgm: () => audios[index].play(),
-    pauseBgm: () => audios[index].pause(),
+    playBgm,
+    pauseBgm,
     setVolume: (value) => {
-      audios.forEach((audio) => (audio.volume = value));
+      if (playlist[index].play) playlist[index].volume = value;
       volume = value;
     },
-    getVolume: () => audios[0].volume,
+    getVolume: () => volume,
     playSfx: (filename) => {
-      const audio = new Audio(`sfx/${filename}.mp3`);
+      const audio = new Audio(`${publicUrl}/sfx/${filename}.mp3`);
       audio.volume = volume * 2;
       audio.play();
     },
