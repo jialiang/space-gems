@@ -1,5 +1,3 @@
-import React from "react";
-
 import { START_GEM_DROP_DURATION } from "./constants";
 
 const formatTime = (time) => ((time || 0) / 1000).toFixed(1);
