@@ -57,7 +57,7 @@ class Game extends React.Component {
     this.getRemainingTime = () => this.state.remainingTime;
     this.setRemainingTime = (remainingTime, callback) => this.setState({ remainingTime }, callback);
 
-    this.isLocked = () => this.state.step !== "default";
+    this.isLocked = () => this.getStep() !== "default";
     this.isWin = () => {
       if (this.getTotalElapsed() < this.timeLimit) return null;
 
@@ -68,7 +68,7 @@ class Game extends React.Component {
     this.setPage = (value) => {
       this.setState({ page: value });
 
-      if (value !== "startPage") this.soundManager.play();
+      if (value !== "startPage") this.soundManager.playBgm();
     };
 
     this.getStep = () => this.state.step;
@@ -135,23 +135,26 @@ class Game extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.step !== prevState.step && this.state.step !== "default") {
-      if (this.state.step === "create" || this.state.step === "starting") {
+    const currentStep = this.getStep();
+    const currentPage = this.getPage();
+
+    if (currentStep !== prevState.step && currentStep !== "default") {
+      if (currentStep === "create" || currentStep === "starting") {
         requestAnimationFrame(this.next);
       } else {
         setTimeout(() => requestAnimationFrame(this.next), TRANSITION_DURATION);
       }
     }
 
-    if (this.state.page !== prevState.page && this.state.page === "playingPage" && this.state.step !== "starting") {
+    if (currentPage !== prevState.page && currentPage === "playingPage" && currentStep !== "starting") {
       this.startCountDown();
     }
 
     // Detect time's up
     if (
-      (this.state.remainingTime !== prevState.remainingTime || this.state.step !== prevState.step) &&
+      (this.state.remainingTime !== prevState.remainingTime || currentStep !== prevState.step) &&
       this.state.remainingTime <= 0 &&
-      this.state.step === "default"
+      currentStep === "default"
     ) {
       if (this.state.score > this.highscore) {
         this.highscore = this.state.score;
@@ -170,7 +173,7 @@ class Game extends React.Component {
   }
 
   render = () =>
-    this[this.state.page]({
+    this[this.getPage()]({
       gems: this.state.gems,
       score: this.state.score,
       highscore: this.highscore,
