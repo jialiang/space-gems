@@ -1,13 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { hydrate, render } from "react-dom";
 
 import "./index.css";
 
 import Game from "./Game/Game";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Game />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+const rootElement = document.getElementById("root");
+
+if (rootElement.hasChildNodes()) {
+  hydrate(<Game />, rootElement);
+} else {
+  render(<Game />, rootElement);
+}
