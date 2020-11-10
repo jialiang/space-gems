@@ -69,7 +69,7 @@ export function dispatchCreator(stateName, reducer) {
 }
 
 export const soundManager = () => {
-  let volume = 0.5;
+  let volume = parseFloat(localStorage.getItem("volume") || 0.5);
   const publicUrl = process.env.PUBLIC_URL;
 
   const playlist = ["Ethereal Eternity", "Piano at Night", "Space Harmony"];
@@ -105,6 +105,7 @@ export const soundManager = () => {
     setVolume: (value) => {
       if (playlist[index].play) playlist[index].volume = value;
       volume = value;
+      localStorage.setItem("volume", value);
     },
     getVolume: () => volume,
     playSfx: (filename) => {

@@ -1,13 +1,7 @@
-import { hydrate, render } from "react-dom";
+import { hydrate } from "react-dom";
 
 import "./index.css";
 
 import Game from "./Game/Game";
 
-const rootElement = document.getElementById("root");
-
-if (rootElement.hasChildNodes()) {
-  hydrate(<Game />, rootElement);
-} else {
-  render(<Game />, rootElement);
-}
+hydrate(<Game />, document.getElementById("root"));

@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/space-gems/static/css/main.3d1192a9.chunk.css",
-    "main.js": "/space-gems/static/js/main.9b79a673.chunk.js",
-    "main.js.map": "/space-gems/static/js/main.9b79a673.chunk.js.map",
+    "main.css": "/space-gems/static/css/main.1b0ffe33.chunk.css",
+    "main.js": "/space-gems/static/js/main.58db9932.chunk.js",
+    "main.js.map": "/space-gems/static/js/main.58db9932.chunk.js.map",
     "runtime-main.js": "/space-gems/static/js/runtime-main.4149cff2.js",
     "runtime-main.js.map": "/space-gems/static/js/runtime-main.4149cff2.js.map",
-    "static/js/2.59d981fc.chunk.js": "/space-gems/static/js/2.59d981fc.chunk.js",
-    "static/js/2.59d981fc.chunk.js.map": "/space-gems/static/js/2.59d981fc.chunk.js.map",
+    "static/js/2.85a1ece2.chunk.js": "/space-gems/static/js/2.85a1ece2.chunk.js",
+    "static/js/2.85a1ece2.chunk.js.map": "/space-gems/static/js/2.85a1ece2.chunk.js.map",
     "index.html": "/space-gems/index.html",
-    "static/css/main.3d1192a9.chunk.css.map": "/space-gems/static/css/main.3d1192a9.chunk.css.map",
-    "static/js/2.59d981fc.chunk.js.LICENSE.txt": "/space-gems/static/js/2.59d981fc.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/space-gems/static/media/background.f2ad642d.jpg"
+    "static/css/main.1b0ffe33.chunk.css.map": "/space-gems/static/css/main.1b0ffe33.chunk.css.map",
+    "static/js/2.85a1ece2.chunk.js.LICENSE.txt": "/space-gems/static/js/2.85a1ece2.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/space-gems/static/media/background.9aa5b80d.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.4149cff2.js",
-    "static/js/2.59d981fc.chunk.js",
-    "static/css/main.3d1192a9.chunk.css",
-    "static/js/main.9b79a673.chunk.js"
+    "static/js/2.85a1ece2.chunk.js",
+    "static/css/main.1b0ffe33.chunk.css",
+    "static/js/main.58db9932.chunk.js"
   ]
 }
