@@ -69,28 +69,26 @@ export function dispatchCreator(stateName, reducer) {
 }
 
 export const soundManager = () => {
-  const playlist = ["Ethereal Eternity", "Piano at Night", "Space Harmony"];
-
-  let index = Math.floor(Math.random() * playlist.length);
   let volume = 0.5;
 
+  const playlist = ["Ethereal Eternity", "Piano at Night", "Space Harmony"];
+  let index = Math.floor(Math.random() * playlist.length);
   const audios = playlist.map((filename) => {
     const audio = new Audio(`music/${filename}.mp3`);
-
+    audio.preload = false;
     audio.volume = volume;
-    audio.onended = () => {
-      index = index === audios.length - 1 ? 0 : index + 1;
-      audios[index].play();
-    };
-
     return audio;
   });
 
-  window.audios = audios;
+  const sfx = ["5secondsleft", "congratulations", "ding", "gameover", "gamestart", "timesup"];
+  sfx.forEach((filename) => {
+    const audio = new Audio(`sfx/${filename}.mp3`);
+    audio.preload = true;
+  });
 
   return {
-    play: () => audios[index].play(),
-    pause: () => audios[index].pause(),
+    playBgm: () => audios[index].play(),
+    pauseBgm: () => audios[index].pause(),
     setVolume: (value) => {
       audios.forEach((audio) => (audio.volume = value));
       volume = value;
