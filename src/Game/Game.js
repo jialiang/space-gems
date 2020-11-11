@@ -172,14 +172,23 @@ class Game extends Component {
     }
   }
 
-  render = () =>
-    this[this.getPage()]({
-      gems: this.state.gems,
-      score: this.state.score,
-      highscore: this.highscore,
-      targetScore: this.targetScore,
-      stats: this.state.stats,
-    });
+  render = () => (
+    <div className="container">
+      <div className="section-container">
+        {this[this.getPage()]({
+          gems: this.state.gems,
+          score: this.state.score,
+          highscore: this.highscore,
+          targetScore: this.targetScore,
+          stats: this.state.stats,
+        })}
+      </div>
+      <picture className="background-image">
+        <source srcset={`${process.env.PUBLIC_URL}/images/background.webp`} type="image/webp" />
+        <img src={`${process.env.PUBLIC_URL}/images/background.jpg`} alt="" />
+      </picture>
+    </div>
+  );
 }
 
 export default Game;
