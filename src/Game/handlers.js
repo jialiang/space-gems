@@ -41,6 +41,7 @@ export const handleChangePage = ({ prepareNewGame, setPage }) => {
   return (page) => {
     if (page === "newPlayingPage") return prepareNewGame();
 
+    document.getElementsByTagName("section")[0].scrollTop = 0;
     setPage(page);
   };
 };
