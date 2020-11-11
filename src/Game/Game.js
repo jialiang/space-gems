@@ -36,7 +36,7 @@ class Game extends PureComponent {
     this.rowCount = Math.max(props.rowCount || 8, 3);
     this.colCount = Math.max(props.colCount || 8, 3);
     this.typeCount = Math.max(props.typeCount || 5, 3);
-    this.targetScore = props.targetScore || 20000;
+    this.targetScore = props.targetScore || 25000;
     this.timeLimit = (props.timeLimit || 60) * 1000;
 
     this.highscore = parseInt(localStorage.getItem("highscore") || 0);
