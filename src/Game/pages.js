@@ -7,18 +7,20 @@ const formatScore = (score) => score.toLocaleString("en-us");
 export const startPage = ({ handleChangePage, targetScore, timeLimit }) => {
   return () => (
     <section id="intro">
-      <h1>Intro</h1>
+      <div>
+        <h1>Intro</h1>
 
-      <p>Greetings! You were exploring a nice planet when aliens boarded your ship!</p>
+        <p>Greetings! You were exploring a nice planet when aliens boarded your ship!</p>
 
-      <p>
-        After a chain of bizarre events, you now find yourself in a situation where you have{" "}
-        <b>{timeLimit / 1000} seconds </b>
-        to <b>score {formatScore(targetScore)} points</b> in a tile-matching game over relaxing ambient music if you
-        want to save your ship and crew.
-      </p>
+        <p>
+          After a chain of bizarre events, you now find yourself in a situation where you have{" "}
+          <b>{timeLimit / 1000} seconds </b>
+          to <b>score {formatScore(targetScore)} points</b> in a tile-matching game over relaxing ambient music if you
+          want to save your ship and crew.
+        </p>
 
-      <button onClick={() => handleChangePage("newPlayingPage")}>Start Game</button>
+        <button onClick={() => handleChangePage("newPlayingPage")}>Start Game</button>
+      </div>
     </section>
   );
 };
@@ -94,7 +96,13 @@ export const playingPage = ({
         >
           {table}
         </div>
-        <div className="time-s-up" style={{ display: remainingTime ? "none" : "" }}>
+        <div
+          className="start"
+          style={{ opacity: remainingTime + 1000 > timeLimit && remainingTime < timeLimit ? "" : "0" }}
+        >
+          Start!
+        </div>
+        <div className="times-up" style={{ display: remainingTime ? "none" : "" }}>
           Time's up!
         </div>
       </section>
@@ -114,6 +122,11 @@ export const menuPage = ({ handleChangePage, targetScore, getRemainingTime, isWi
         <div>
           <h1>{title}</h1>
 
+          <div className="button-container">
+            {winStatus === null && <button onClick={() => handleChangePage("playingPage")}>Resume Game</button>}
+            <button onClick={() => handleChangePage("newPlayingPage")}>New Game</button>
+          </div>
+
           {winStatus === null && (
             <div>
               Time Left: <b>{formatTime(remainingTime)}s</b>
@@ -129,10 +142,11 @@ export const menuPage = ({ handleChangePage, targetScore, getRemainingTime, isWi
             High Score: <b>{formatScore(highscore)}</b>
           </div>
 
-          <div className="button-container">
-            <button onClick={() => handleChangePage("newPlayingPage")}>New Game</button>
-
-            {winStatus === null && <button onClick={() => handleChangePage("playingPage")}>Resume Game</button>}
+          <div className="stats-container">
+            <b>Stats This Round:</b>
+            <div>3 of a Kind: {stats.match3 || 0}</div>
+            <div>4 of a Kind: {stats.match4 || 0}</div>
+            <div>5 of a Kind: {stats.match5 || 0}</div>
           </div>
 
           <div>
@@ -143,15 +157,8 @@ export const menuPage = ({ handleChangePage, targetScore, getRemainingTime, isWi
               onInput={(e) => setBgmVolume(e.target.value)}
               min="0"
               max="0.5"
-              step="0.05"
+              step="0.025"
             />
-          </div>
-
-          <div className="stats-container">
-            <b>Stats This Round:</b>
-            <div>3 of a Kind: {stats.match3 || 0}</div>
-            <div>4 of a Kind: {stats.match4 || 0}</div>
-            <div>5 of a Kind: {stats.match5 || 0}</div>
           </div>
 
           <div className="button-container">
@@ -166,35 +173,37 @@ export const menuPage = ({ handleChangePage, targetScore, getRemainingTime, isWi
 export const creditsPage = ({ handleChangePage }) => {
   return () => (
     <section id="credits">
-      <h1>Credits</h1>
+      <div>
+        <h1>Credits</h1>
 
-      <ul>
-        <li>
-          The music "Ethereal Eternity", "Piano at Night" and "Space Harmony" by{" "}
-          <a href="https://www.purple-planet.com/" target="_blank" rel="noopener noreferrer">
-            Purple Planet Music
-          </a>{" "}
-          used under the{" "}
-          <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">
-            Creative Commons Attribution License 3.0
-          </a>
-          .
-        </li>
-        <li>
-          The background image "Landscape Mountains Sun" by{" "}
-          <a href="https://pixabay.com/users/8385-8385/" target="_blank" rel="noopener noreferrer">
-            Reimund Bertrams
-          </a>{" "}
-          used under the{" "}
-          <a href="https://pixabay.com/service/license/" target="_blank" rel="noopener noreferrer">
-            Pixabay License
-          </a>
-          .
-        </li>
-      </ul>
+        <ul>
+          <li>
+            The music "Ethereal Eternity", "Piano at Night" and "Space Harmony" by{" "}
+            <a href="https://www.purple-planet.com/" target="_blank" rel="noopener noreferrer">
+              Purple Planet Music
+            </a>{" "}
+            used under the{" "}
+            <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">
+              Creative Commons Attribution License 3.0
+            </a>
+            .
+          </li>
+          <li>
+            The background image "Beast Landscape Space" by{" "}
+            <a href="https://pixabay.com/users/8385-8385/" target="_blank" rel="noopener noreferrer">
+              Reimund Bertrams
+            </a>{" "}
+            used under the{" "}
+            <a href="https://pixabay.com/service/license/" target="_blank" rel="noopener noreferrer">
+              Pixabay License
+            </a>
+            .
+          </li>
+        </ul>
 
-      <div className="button-container">
-        <button onClick={() => handleChangePage("menuPage")}>Back to Menu</button>
+        <div className="button-container">
+          <button onClick={() => handleChangePage("menuPage")}>Back to Menu</button>
+        </div>
       </div>
     </section>
   );
