@@ -1,7 +1,15 @@
-import { hydrate } from "react-dom";
-
-import "./index.css";
+import { Component } from "preact";
 
 import Game from "./Game/Game";
 
-hydrate(<Game />, document.getElementById("root"));
+import "./index.css";
+
+export default class App extends Component {
+  render() {
+    return (
+      <div id="root">
+        <Game />
+      </div>
+    );
+  }
+}

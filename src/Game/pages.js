@@ -153,7 +153,7 @@ export const menuPage = ({ handleChangePage, targetScore, getRemainingTime, isWi
             Volume:
             <input
               type="range"
-              defaultValue={getBgmVolume()}
+              value={getBgmVolume()}
               onInput={(e) => setBgmVolume(e.target.value)}
               min="0"
               max="0.5"

@@ -1,4 +1,4 @@
-import { PureComponent } from "react";
+import { Component } from "preact";
 
 import { gemsReducer, scoreReducer, statsReducer } from "./reducers";
 import { handleGemMouseDown, handleGemMouseEnter, handleTouchMove, handleChangePage } from "./handlers";
@@ -17,7 +17,7 @@ import {
 import { startPage, playingPage, menuPage, creditsPage } from "./pages";
 import { TRANSITION_DURATION, TIMES_UP_SCREEN_DURATION } from "./constants";
 
-class Game extends PureComponent {
+class Game extends Component {
   constructor(props) {
     super(props);
 
@@ -184,8 +184,8 @@ class Game extends PureComponent {
         })}
       </div>
       <picture className="background-image">
-        <source srcset={`${process.env.PUBLIC_URL}/images/background.webp`} type="image/webp" />
-        <img src={`${process.env.PUBLIC_URL}/images/background.jpg`} alt="" />
+        <source srcset="images/background.webp" type="image/webp" />
+        <img src="images/background.jpg" alt="" />
       </picture>
     </div>
   );

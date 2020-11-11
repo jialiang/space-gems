@@ -70,7 +70,6 @@ export function dispatchCreator(stateName, reducer) {
 
 export const soundManager = () => {
   let volume = parseFloat(localStorage.getItem("volume") || 0.5);
-  const publicUrl = process.env.PUBLIC_URL;
 
   const playlist = ["Ethereal Eternity", "Piano at Night", "Space Harmony"];
   let index = Math.floor(Math.random() * playlist.length);
@@ -79,7 +78,7 @@ export const soundManager = () => {
     let audio = playlist[index];
 
     if (!audio.play) {
-      audio = new Audio(`${publicUrl}/music/${audio}.mp3`);
+      audio = new Audio(`music/${audio}.mp3`);
       audio.onended = () => {
         index = index + 1 === playlist.length ? 0 : index + 1;
         playBgm();
@@ -97,7 +96,7 @@ export const soundManager = () => {
 
   const sfx = ["5secondsleft", "congratulations", "ding", "gameover", "gamestart", "timesup"];
   sfx.forEach((filename) => {
-    const audio = new Audio(`${publicUrl}/sfx/${filename}.mp3`);
+    const audio = new Audio(`sfx/${filename}.mp3`);
     audio.preload = true;
   });
 
@@ -113,7 +112,7 @@ export const soundManager = () => {
     },
     getVolume: () => Math.pow(volume * 2, 0.5) / 2,
     playSfx: (filename) => {
-      const audio = new Audio(`${publicUrl}/sfx/${filename}.mp3`);
+      const audio = new Audio(`sfx/${filename}.mp3`);
       audio.volume = volume * 1.5;
       audio.play();
     },
