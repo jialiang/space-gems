@@ -131,7 +131,7 @@ class Game extends PureComponent {
   };
 
   componentWillUnmount() {
-    this.soundManager.pause();
+    this.soundManager.pauseBgm();
   }
 
   componentDidUpdate(prevProps, prevState) {
