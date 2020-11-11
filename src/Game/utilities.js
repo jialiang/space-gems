@@ -77,14 +77,16 @@ export const soundManager = () => {
 
   const playBgm = () => {
     let audio = playlist[index];
+
     if (!audio.play) {
       audio = new Audio(`${publicUrl}/music/${audio}.mp3`);
       audio.onended = () => {
-        index = index + 1 === index.lenght ? 0 : index + 1;
+        index = index + 1 === playlist.length ? 0 : index + 1;
         playBgm();
       };
       playlist[index] = audio;
     }
+
     audio.volume = volume;
     audio.play();
   };
@@ -103,14 +105,16 @@ export const soundManager = () => {
     playBgm,
     pauseBgm,
     setVolume: (value) => {
-      if (playlist[index].play) playlist[index].volume = value;
-      volume = value;
-      localStorage.setItem("volume", value);
+      const val = Math.pow(parseFloat(value) * 2, 2) / 2;
+
+      if (playlist[index].play) playlist[index].volume = val;
+      volume = val;
+      localStorage.setItem("volume", val);
     },
-    getVolume: () => volume,
+    getVolume: () => Math.pow(volume * 2, 0.5) / 2,
     playSfx: (filename) => {
       const audio = new Audio(`${publicUrl}/sfx/${filename}.mp3`);
-      audio.volume = volume * 2;
+      audio.volume = volume * 1.5;
       audio.play();
     },
   };
