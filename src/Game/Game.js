@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 
 import { gemsReducer, scoreReducer, statsReducer } from "./reducers";
 import { handleGemMouseDown, handleGemMouseEnter, handleTouchMove, handleChangePage } from "./handlers";
@@ -17,7 +17,7 @@ import {
 import { startPage, playingPage, menuPage, creditsPage } from "./pages";
 import { TRANSITION_DURATION, TIMES_UP_SCREEN_DURATION } from "./constants";
 
-class Game extends Component {
+class Game extends PureComponent {
   constructor(props) {
     super(props);
 
