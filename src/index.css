@@ -11,6 +11,9 @@ body {
   height: 100vh;
   color: white;
   background: url("images/background.preload.jpg") 0 0 / cover no-repeat;
+  image-rendering: optimizeSpeed;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
 
 .section-container {
