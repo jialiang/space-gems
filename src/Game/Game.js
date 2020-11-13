@@ -184,8 +184,10 @@ class Game extends Component {
         })}
       </div>
       <picture className="background-image">
-        <source srcset="images/background.webp" type="image/webp" />
-        <img src="images/background.jpg" alt="" />
+        <source media="(max-aspect-ratio: 1 / 1)" srcset="images/background-vertical.webp" type="image/webp" />
+        <source media="(max-aspect-ratio: 1 / 1)" srcset="images/background-vertical.jpg" type="image/jpeg" />
+        <source srcset="images/background-horizontal.webp" type="image/webp" />
+        <img src="images/background-horizontal.jpg" alt="" />
       </picture>
     </div>
   );
