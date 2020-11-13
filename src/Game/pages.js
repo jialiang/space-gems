@@ -189,13 +189,13 @@ export const creditsPage = ({ handleChangePage }) => {
             .
           </li>
           <li>
-            The background image "Beast Landscape Space" by{" "}
-            <a href="https://pixabay.com/users/8385-8385/" target="_blank" rel="noopener noreferrer">
-              Reimund Bertrams
+            The background image "Bubble Nebula" by{" "}
+            <a href="https://hubblesite.org/image/3725/gallery" target="_blank" rel="noopener noreferrer">
+              NASA, ESA, and the Hubble Heritage Team (STScI/AURA)
             </a>{" "}
-            used under the{" "}
-            <a href="https://pixabay.com/service/license/" target="_blank" rel="noopener noreferrer">
-              Pixabay License
+            belongs to the{" "}
+            <a href="https://hubblesite.org/copyright" target="_blank" rel="noopener noreferrer">
+              Public Domain
             </a>
             .
           </li>
