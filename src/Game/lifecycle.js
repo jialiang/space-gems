@@ -53,7 +53,7 @@ export const startCountDown = ({
 
     const remaining = Math.max(timeLimit - totalElapsed, 0);
 
-    if (!reportedFiveSecondsLeft && remaining <= 5500) {
+    if (!reportedFiveSecondsLeft && remaining <= 5500 && remaining > 2000) {
       soundManager.playSfx("5secondsleft");
       reportedFiveSecondsLeft = true;
     }
