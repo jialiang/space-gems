@@ -133,6 +133,7 @@ li {
   overflow-y: auto;
   box-sizing: border-box;
   height: 100%;
+  max-height: 90vh;
   padding: 1em;
   transform: translateZ(0);
 }
@@ -175,6 +176,7 @@ li {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 80% 80%;
+  will-change: transform;
 }
 
 .gem:hover {
