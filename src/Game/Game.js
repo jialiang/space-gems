@@ -184,10 +184,69 @@ class Game extends Component {
         })}
       </div>
       <picture className="background-image">
-        <source media="(max-aspect-ratio: 1 / 1)" srcset="images/background-vertical.webp" type="image/webp" />
-        <source media="(max-aspect-ratio: 1 / 1)" srcset="images/background-vertical.jpg" type="image/jpeg" />
-        <source srcset="images/background-horizontal.webp" type="image/webp" />
-        <img src="images/background-horizontal.jpg" alt="" />
+        <source
+          media="(max-aspect-ratio: 1 / 1) and (max-height: 427px)"
+          srcset="images/background-640.webp"
+          type="image/webp"
+        />
+        <source
+          media="(max-aspect-ratio: 1 / 1) and (max-height: 427px)"
+          srcset="images/background-640.jpg"
+          type="image/jpeg"
+        />
+
+        <source
+          media="(max-aspect-ratio: 1 / 1) and (max-height: 640px)"
+          srcset="images/background-960.webp"
+          type="image/webp"
+        />
+        <source
+          media="(max-aspect-ratio: 1 / 1) and (max-height: 640px)"
+          srcset="images/background-960.jpg"
+          type="image/jpeg"
+        />
+
+        <source
+          media="(max-aspect-ratio: 1 / 1) and (max-height: 854px)"
+          srcset="images/background-1280.webp"
+          type="image/webp"
+        />
+        <source
+          media="(max-aspect-ratio: 1 / 1) and (max-height: 854px)"
+          srcset="images/background-1280.jpg"
+          type="image/jpeg"
+        />
+
+        <source
+          media="(max-aspect-ratio: 1 / 1) and (max-height: 1280px)"
+          srcset="images/background-1920.webp"
+          type="image/webp"
+        />
+        <source
+          media="(max-aspect-ratio: 1 / 1) and (max-height: 1280px)"
+          srcset="images/background-1920.jpg"
+          type="image/jpeg"
+        />
+
+        <source media="(max-aspect-ratio: 1 / 1)" srcset="images/background-2560.webp" type="image/webp" />
+        <source media="(max-aspect-ratio: 1 / 1)" srcset="images/background-2560.jpg" type="image/jpeg" />
+
+        <source media="(max-width: 427px)" srcset="images/background-640.webp" type="image/webp" />
+        <source media="(max-width: 427px)" srcset="images/background-640.jpg" type="image/jpeg" />
+
+        <source media="(max-width: 640px)" srcset="images/background-960.webp" type="image/webp" />
+        <source media="(max-width: 640px)" srcset="images/background-960.jpg" type="image/jpeg" />
+
+        <source media="(max-width: 854px)" srcset="images/background-1280.webp" type="image/webp" />
+        <source media="(max-width: 854px)" srcset="images/background-1280.jpg" type="image/jpeg" />
+
+        <source media="(max-width: 1280px)" srcset="images/background-1920.webp" type="image/webp" />
+        <source media="(max-width: 1280px)" srcset="images/background-1920.jpg" type="image/jpeg" />
+
+        <source srcset="images/background-2560.webp" type="image/webp" />
+        <source srcset="images/background-2560.jpg" type="image/jpeg" />
+
+        <img src="images/background-2560.jpg" alt="" />
       </picture>
     </div>
   );
