@@ -179,6 +179,7 @@ li {
   width: 80vmin;
   height: 80vmin;
   overflow: hidden;
+  touch-action: none;
   font-size: 0;
 }
 
