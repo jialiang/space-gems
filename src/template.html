@@ -9,6 +9,15 @@
     <meta name="description" content="A tile-matching game made in React the React way." />
     <meta name="author" content="Jia Liang, hojialiang@yahoo.com" />
 
+    <% for (const file in compilation.assets) if (file.endsWith(".woff2")) { %>
+    <link
+      rel="preload"
+      href="<%= htmlWebpackPlugin.files.publicPath + file %>"
+      as="font"
+      type="font/woff2"
+      crossorigin />
+    <% } %>
+
     <link rel="icon" type="image/x-icon" href="https://jialiang.github.io/favicon.png" />
     <link rel="canonical" href="https://jialiang.github.io/space-gems/" />
 

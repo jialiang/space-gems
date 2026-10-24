@@ -7,7 +7,7 @@
     "node": "20.x"
   },
   "scripts": {
-    "build": "preact build --no-sw --no-prerender --dest dist",
+    "build": "preact build --no-sw --no-prerender --no-inline-css --dest dist",
     "serve": "sirv dist --port 8080 --cors --single",
     "dev": "preact watch",
     "postbuild": "react-snap",

@@ -4,3 +4,5 @@
 *.jpg  binary
 *.webp binary
 *.mp3  binary
+*.woff  binary
+*.woff2 binary

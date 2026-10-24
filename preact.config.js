@@ -1,3 +1,3 @@
 export default (config) => {
-  config.output.publicPath = ".";
+  config.output.publicPath = "./";
 };
