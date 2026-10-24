@@ -14,19 +14,12 @@
     "format": "prettier --write .",
     "lint": "eslint ."
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all",
-      "ie 11"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all",
+    "ie 11"
+  ],
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@typescript-eslint/utils": "^8.72.0",
