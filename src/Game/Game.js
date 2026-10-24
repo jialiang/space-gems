@@ -193,7 +193,7 @@ class Game extends Component {
 
   render = () => (
     <div className="container">
-      <div className="section-container">
+      <main className="section-container">
         {this[this.getPage()]({
           gems: this.state.gems,
           score: this.state.score,
@@ -201,7 +201,7 @@ class Game extends Component {
           targetScore: this.targetScore,
           stats: this.state.stats,
         })}
-      </div>
+      </main>
       <picture className="background-image">
         <source srcset={backgroundSrcset("avif")} sizes={backgroundSizes} type="image/avif" />
         <img

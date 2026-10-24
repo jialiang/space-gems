@@ -158,7 +158,7 @@ export const menuPage = ({
             <div>5 of a Kind: {stats.match5 || 0}</div>
           </div>
 
-          <div>
+          <label>
             Volume:
             <input
               type="range"
@@ -168,7 +168,7 @@ export const menuPage = ({
               max="0.5"
               step="0.025"
             />
-          </div>
+          </label>
 
           <div className="button-container">
             <button onClick={() => handleChangePage("creditsPage")}>Credits</button>
