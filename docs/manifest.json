@@ -1,0 +1,16 @@
+{
+  "name": "Space Gems",
+  "short_name": "Space Gems",
+  "description": "A tile-matching game made in React the React way.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#000",
+  "theme_color": "#000",
+  "icons": [
+    {
+      "src": "https://jialiang.github.io/favicon.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ]
+}
