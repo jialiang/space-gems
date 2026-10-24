@@ -30,6 +30,12 @@ body {
   line-height: 1.5;
 }
 
+@media (max-width: 22.5em), (max-height: 22.5em) {
+  #root {
+    font-size: 6.67vmin;
+  }
+}
+
 .section-container {
   display: flex;
   position: fixed;
@@ -44,7 +50,7 @@ body {
 }
 
 section {
-  position: fixed;
+  position: relative;
   box-sizing: border-box;
   box-shadow: 0 0 10vmin inset black;
   border-radius: 1em;
@@ -73,25 +79,25 @@ section:after {
 }
 
 .background-image {
-  display: flex;
   position: fixed;
   top: 0;
   left: 0;
-  justify-content: center;
-  align-items: center;
   background: #271029;
   width: 100%;
   height: 100%;
 }
 
 .background-image img {
-  width: 100vmax;
-  height: 100vmin;
+  width: 100%;
+  height: auto;
 }
 
-@media (max-aspect-ratio: 1 / 1) {
+@media (max-aspect-ratio: 16 / 9) {
   .background-image img {
-    transform: rotateZ(-90deg);
+    transform: translateX(100vw) rotate(90deg);
+    transform-origin: top left;
+    width: auto;
+    height: 100vw;
   }
 }
 
@@ -144,7 +150,6 @@ li {
 }
 
 #game {
-  position: relative;
   background: rgba(0, 0, 0, 0.6);
   height: 90vmin;
 }
@@ -324,6 +329,7 @@ li {
 }
 
 #credits {
+  padding-left: 1em;
   text-align: left;
 }
 
