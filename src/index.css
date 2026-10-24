@@ -85,19 +85,37 @@ section:after {
   background: #271029;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .background-image img {
-  width: 100%;
-  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200vh;
+  height: 100vh;
 }
 
-@media (max-aspect-ratio: 16 / 9) {
+@media (min-aspect-ratio: 2 / 1) {
   .background-image img {
-    transform: translateX(100vw) rotate(90deg);
-    transform-origin: top left;
-    width: auto;
+    width: 100vw;
+    height: 50vw;
+  }
+}
+
+@media (max-aspect-ratio: 1 / 1) {
+  .background-image img {
+    transform: translate(-50%, -50%) rotate(90deg);
+    width: 200vw;
     height: 100vw;
+  }
+}
+
+@media (max-aspect-ratio: 1 / 2) {
+  .background-image img {
+    width: 100vh;
+    height: 50vh;
   }
 }
 

@@ -22,6 +22,15 @@ import {
 import { startPage, playingPage, menuPage, creditsPage } from "./pages";
 import { TRANSITION_DURATION, TIMES_UP_SCREEN_DURATION } from "./constants";
 
+const backgroundWidths = [640, 960, 1280, 1920, 2560];
+
+const backgroundSrcset = (format) =>
+  backgroundWidths.map((width) => `images/background-${width}.${format} ${width}w`).join(", ");
+
+// The image's width in each of index.css's cover rules.
+const backgroundSizes =
+  "(min-aspect-ratio: 2/1) 100vw, (min-aspect-ratio: 1/1) 200vh, (min-aspect-ratio: 1/2) 200vw, 100vh";
+
 class Game extends Component {
   constructor(props) {
     super(props);
@@ -194,81 +203,14 @@ class Game extends Component {
         })}
       </div>
       <picture className="background-image">
-        <source
-          media="(max-aspect-ratio: 1 / 1) and (max-height: 427px)"
-          srcset="images/background-640.webp"
-          type="image/webp"
+        <source srcset={backgroundSrcset("avif")} sizes={backgroundSizes} type="image/avif" />
+        <img
+          srcset={backgroundSrcset("jpg")}
+          sizes={backgroundSizes}
+          src="images/background-2560.jpg"
+          alt=""
+          fetchpriority="high"
         />
-        <source
-          media="(max-aspect-ratio: 1 / 1) and (max-height: 427px)"
-          srcset="images/background-640.jpg"
-          type="image/jpeg"
-        />
-
-        <source
-          media="(max-aspect-ratio: 1 / 1) and (max-height: 640px)"
-          srcset="images/background-960.webp"
-          type="image/webp"
-        />
-        <source
-          media="(max-aspect-ratio: 1 / 1) and (max-height: 640px)"
-          srcset="images/background-960.jpg"
-          type="image/jpeg"
-        />
-
-        <source
-          media="(max-aspect-ratio: 1 / 1) and (max-height: 854px)"
-          srcset="images/background-1280.webp"
-          type="image/webp"
-        />
-        <source
-          media="(max-aspect-ratio: 1 / 1) and (max-height: 854px)"
-          srcset="images/background-1280.jpg"
-          type="image/jpeg"
-        />
-
-        <source
-          media="(max-aspect-ratio: 1 / 1) and (max-height: 1280px)"
-          srcset="images/background-1920.webp"
-          type="image/webp"
-        />
-        <source
-          media="(max-aspect-ratio: 1 / 1) and (max-height: 1280px)"
-          srcset="images/background-1920.jpg"
-          type="image/jpeg"
-        />
-
-        <source
-          media="(max-aspect-ratio: 1 / 1)"
-          srcset="images/background-2560.webp"
-          type="image/webp"
-        />
-        <source
-          media="(max-aspect-ratio: 1 / 1)"
-          srcset="images/background-2560.jpg"
-          type="image/jpeg"
-        />
-
-        <source media="(max-width: 427px)" srcset="images/background-640.webp" type="image/webp" />
-        <source media="(max-width: 427px)" srcset="images/background-640.jpg" type="image/jpeg" />
-
-        <source media="(max-width: 640px)" srcset="images/background-960.webp" type="image/webp" />
-        <source media="(max-width: 640px)" srcset="images/background-960.jpg" type="image/jpeg" />
-
-        <source media="(max-width: 854px)" srcset="images/background-1280.webp" type="image/webp" />
-        <source media="(max-width: 854px)" srcset="images/background-1280.jpg" type="image/jpeg" />
-
-        <source
-          media="(max-width: 1280px)"
-          srcset="images/background-1920.webp"
-          type="image/webp"
-        />
-        <source media="(max-width: 1280px)" srcset="images/background-1920.jpg" type="image/jpeg" />
-
-        <source srcset="images/background-2560.webp" type="image/webp" />
-        <source srcset="images/background-2560.jpg" type="image/jpeg" />
-
-        <img src="images/background-2560.jpg" alt="" />
       </picture>
     </div>
   );

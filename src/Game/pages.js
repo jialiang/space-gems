@@ -203,13 +203,16 @@ export const creditsPage = ({ handleChangePage }) => {
           <li>
             The background image "Bubble Nebula" by{" "}
             <a
-              href="https://hubblesite.org/image/3725/gallery"
+              href="https://science.nasa.gov/asset/hubble/bubble-nebula-ngc-7635/"
               target="_blank"
               rel="noopener noreferrer">
               NASA, ESA, and the Hubble Heritage Team (STScI/AURA)
             </a>{" "}
             belongs to the{" "}
-            <a href="https://hubblesite.org/copyright" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.nasa.gov/nasa-brand-center/images-and-media/"
+              target="_blank"
+              rel="noopener noreferrer">
               Public Domain
             </a>
             .
