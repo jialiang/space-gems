@@ -40,6 +40,7 @@
   },
   "reactSnap": {
     "source": "dist",
+    "publicPath": "/space-gems",
     "inlineCss": true,
     "puppeteerArgs": [
       "--no-sandbox",
