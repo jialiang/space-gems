@@ -65,7 +65,8 @@ export const createBoard = ({ rowCount, colCount, typeCount, rowOffset = 0, colO
 };
 
 export function dispatchCreator(stateName, reducer) {
-  return (action, callback) => this.setState({ [stateName]: reducer(this.state[stateName], action) }, callback);
+  return (action, callback) =>
+    this.setState({ [stateName]: reducer(this.state[stateName], action) }, callback);
 }
 
 export const soundManager = () => {

@@ -15,8 +15,8 @@ export const startPage = ({ handleChangePage, targetScore, timeLimit }) => {
         <p>
           After a chain of bizarre events, you now find yourself in a situation where you have{" "}
           <b>{timeLimit / 1000} seconds </b>
-          to <b>score {formatScore(targetScore)} points</b> in a tile-matching game over relaxing ambient music if you
-          want to save your ship and crew.
+          to <b>score {formatScore(targetScore)} points</b> in a tile-matching game over relaxing
+          ambient music if you want to save your ship and crew.
         </p>
 
         <button onClick={() => handleChangePage("newPlayingPage")}>Start Game</button>
@@ -48,7 +48,8 @@ export const playingPage = ({
         transform: `translate3d(${col * 100}%, ${row * 100}%, 0)`,
       };
 
-      if (remainingTime === timeLimit) style.transitionDelay = `${(index * START_GEM_DROP_DURATION) / 1000}s`;
+      if (remainingTime === timeLimit)
+        style.transitionDelay = `${(index * START_GEM_DROP_DURATION) / 1000}s`;
 
       if (destroyed) style.transform += " scale(0)";
 
@@ -61,8 +62,7 @@ export const playingPage = ({
           onMouseDown={() => handleGemMouseDown(id)}
           onMouseEnter={() => handleGemMouseEnter(id)}
           onTouchStart={() => handleGemMouseDown(id)}
-          data-value={value}
-        >
+          data-value={value}>
           {value}
         </span>
       );
@@ -92,14 +92,14 @@ export const playingPage = ({
           className="board"
           onMouseUp={() => setSelectedGem(null)}
           onMouseLeave={() => setSelectedGem(null)}
-          onTouchMove={handleTouchMove}
-        >
+          onTouchMove={handleTouchMove}>
           {table}
         </div>
         <div
           className="start"
-          style={{ opacity: remainingTime + 1000 > timeLimit && remainingTime < timeLimit ? "" : "0" }}
-        >
+          style={{
+            opacity: remainingTime + 1000 > timeLimit && remainingTime < timeLimit ? "" : "0",
+          }}>
           Start!
         </div>
         <div className="times-up" style={{ display: remainingTime ? "none" : "" }}>
@@ -110,7 +110,14 @@ export const playingPage = ({
   };
 };
 
-export const menuPage = ({ handleChangePage, targetScore, getRemainingTime, isWin, getBgmVolume, setBgmVolume }) => {
+export const menuPage = ({
+  handleChangePage,
+  targetScore,
+  getRemainingTime,
+  isWin,
+  getBgmVolume,
+  setBgmVolume,
+}) => {
   return ({ score, highscore, stats }) => {
     const remainingTime = getRemainingTime();
     const winStatus = isWin();
@@ -123,7 +130,9 @@ export const menuPage = ({ handleChangePage, targetScore, getRemainingTime, isWi
           <h1>{title}</h1>
 
           <div className="button-container">
-            {winStatus === null && <button onClick={() => handleChangePage("playingPage")}>Resume Game</button>}
+            {winStatus === null && (
+              <button onClick={() => handleChangePage("playingPage")}>Resume Game</button>
+            )}
             <button onClick={() => handleChangePage("newPlayingPage")}>New Game</button>
           </div>
 
@@ -183,14 +192,20 @@ export const creditsPage = ({ handleChangePage }) => {
               Purple Planet Music
             </a>{" "}
             used under the{" "}
-            <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://creativecommons.org/licenses/by/3.0/"
+              target="_blank"
+              rel="noopener noreferrer">
               Creative Commons Attribution License 3.0
             </a>
             .
           </li>
           <li>
             The background image "Bubble Nebula" by{" "}
-            <a href="https://hubblesite.org/image/3725/gallery" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://hubblesite.org/image/3725/gallery"
+              target="_blank"
+              rel="noopener noreferrer">
               NASA, ESA, and the Hubble Heritage Team (STScI/AURA)
             </a>{" "}
             belongs to the{" "}

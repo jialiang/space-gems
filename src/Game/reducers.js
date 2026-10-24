@@ -2,7 +2,7 @@ export const gemsReducer = (state = {}, action = {}) => {
   const newData = action.data;
 
   switch (action.type) {
-    case "set":
+    case "set": {
       const board = {};
       const gemsKeys = [];
 
@@ -18,6 +18,7 @@ export const gemsReducer = (state = {}, action = {}) => {
         board,
         gemsKeys,
       };
+    }
     case "update":
       Object.keys(newData).forEach((key) => {
         const gem = newData[key];

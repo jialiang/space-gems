@@ -1,7 +1,15 @@
 import { createBoard, createGem } from "./utilities";
 import { TRANSITION_DURATION, START_GEM_DROP_DURATION } from "./constants";
 
-export const startGame = ({ rowCount, colCount, typeCount, dispatchGems, setStep, startCountDown, soundManager }) => {
+export const startGame = ({
+  rowCount,
+  colCount,
+  typeCount,
+  dispatchGems,
+  setStep,
+  startCountDown,
+  soundManager,
+}) => {
   return () => {
     dispatchGems({
       type: "update",
@@ -15,10 +23,13 @@ export const startGame = ({ rowCount, colCount, typeCount, dispatchGems, setStep
 
     setStep("create");
 
-    setTimeout(() => {
-      soundManager.playSfx("gamestart");
-      requestAnimationFrame(startCountDown);
-    }, TRANSITION_DURATION + START_GEM_DROP_DURATION * rowCount * colCount);
+    setTimeout(
+      () => {
+        soundManager.playSfx("gamestart");
+        requestAnimationFrame(startCountDown);
+      },
+      TRANSITION_DURATION + START_GEM_DROP_DURATION * rowCount * colCount
+    );
   };
 };
 
@@ -122,7 +133,13 @@ export const findMatches = ({ getGemFromBoard, rowCount, colCount }) => {
   };
 };
 
-export const destroyGems = ({ setStep, dispatchScore, dispatchGems, dispatchStats, soundManager }) => {
+export const destroyGems = ({
+  setStep,
+  dispatchScore,
+  dispatchGems,
+  dispatchStats,
+  soundManager,
+}) => {
   return (matches) => {
     const updateGems = {};
     const stats = {
@@ -161,7 +178,14 @@ export const destroyGems = ({ setStep, dispatchScore, dispatchGems, dispatchStat
   };
 };
 
-export const replaceDestroyedGems = ({ getGemFromBoard, setStep, dispatchGems, rowCount, colCount, typeCount }) => {
+export const replaceDestroyedGems = ({
+  getGemFromBoard,
+  setStep,
+  dispatchGems,
+  rowCount,
+  colCount,
+  typeCount,
+}) => {
   return () => {
     const updateGems = {};
 
@@ -260,7 +284,8 @@ export const next = ({
     if (step === "swap" || step === "drop") matches = findMatches();
 
     // If last step was swap gems and no matches, undo swap
-    if (step === "swap" && matches.length === 0 && undo) return swapGems(undo.firstGemId, undo.secondGemId, true);
+    if (step === "swap" && matches.length === 0 && undo)
+      return swapGems(undo.firstGemId, undo.secondGemId, true);
 
     // If there's match, destroy gems
     if (matches.length !== 0) return destroyGems(matches);

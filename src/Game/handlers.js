@@ -14,8 +14,11 @@ export const handleGemMouseEnter = ({ getGem, setSelectedGem, setUndo, swapGems 
 
     const hoveredGem = getGem(hoveredGemId);
 
+    const rowDistance = Math.abs(selectedGem.row - hoveredGem.row);
+    const colDistance = Math.abs(selectedGem.col - hoveredGem.col);
+
     // Make sure we swap only neighbouring gems
-    if (Math.abs(selectedGem.row - hoveredGem.row) + Math.abs(selectedGem.col - hoveredGem.col) !== 1) {
+    if (rowDistance + colDistance !== 1) {
       setSelectedGem(null);
       return;
     }

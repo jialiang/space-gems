@@ -1,7 +1,12 @@
 import { Component } from "preact";
 
 import { gemsReducer, scoreReducer, statsReducer } from "./reducers";
-import { handleGemMouseDown, handleGemMouseEnter, handleTouchMove, handleChangePage } from "./handlers";
+import {
+  handleGemMouseDown,
+  handleGemMouseEnter,
+  handleTouchMove,
+  handleChangePage,
+} from "./handlers";
 import { dispatchCreator, soundManager } from "./utilities";
 import {
   startCountDown,
@@ -75,7 +80,8 @@ class Game extends Component {
     this.setStep = (value) => this.setState({ step: value });
 
     this.getUndo = () => this.undo;
-    this.setUndo = (firstGemId, secondGemId) => (this.undo = firstGemId ? { firstGemId, secondGemId } : null);
+    this.setUndo = (firstGemId, secondGemId) =>
+      (this.undo = firstGemId ? { firstGemId, secondGemId } : null);
 
     this.getTotalElapsed = () => this.totalElapsed;
     this.setTotalElapsed = (time) => (this.totalElapsed = time);
@@ -146,7 +152,11 @@ class Game extends Component {
       }
     }
 
-    if (currentPage !== prevState.page && currentPage === "playingPage" && currentStep !== "starting") {
+    if (
+      currentPage !== prevState.page &&
+      currentPage === "playingPage" &&
+      currentStep !== "starting"
+    ) {
       this.startCountDown();
     }
 
@@ -228,8 +238,16 @@ class Game extends Component {
           type="image/jpeg"
         />
 
-        <source media="(max-aspect-ratio: 1 / 1)" srcset="images/background-2560.webp" type="image/webp" />
-        <source media="(max-aspect-ratio: 1 / 1)" srcset="images/background-2560.jpg" type="image/jpeg" />
+        <source
+          media="(max-aspect-ratio: 1 / 1)"
+          srcset="images/background-2560.webp"
+          type="image/webp"
+        />
+        <source
+          media="(max-aspect-ratio: 1 / 1)"
+          srcset="images/background-2560.jpg"
+          type="image/jpeg"
+        />
 
         <source media="(max-width: 427px)" srcset="images/background-640.webp" type="image/webp" />
         <source media="(max-width: 427px)" srcset="images/background-640.jpg" type="image/jpeg" />
@@ -240,7 +258,11 @@ class Game extends Component {
         <source media="(max-width: 854px)" srcset="images/background-1280.webp" type="image/webp" />
         <source media="(max-width: 854px)" srcset="images/background-1280.jpg" type="image/jpeg" />
 
-        <source media="(max-width: 1280px)" srcset="images/background-1920.webp" type="image/webp" />
+        <source
+          media="(max-width: 1280px)"
+          srcset="images/background-1920.webp"
+          type="image/webp"
+        />
         <source media="(max-width: 1280px)" srcset="images/background-1920.jpg" type="image/jpeg" />
 
         <source srcset="images/background-2560.webp" type="image/webp" />
