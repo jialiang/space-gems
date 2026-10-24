@@ -1,0 +1,51 @@
+name: deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      # preact-cli 3 can't load its config on Node 22+ (see engines in package.json).
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: npm
+
+      # Install scripts stay on: puppeteer's downloads the Chromium react-snap uses.
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Build webpage
+        run: npm run build
+
+      - name: Upload webpage
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

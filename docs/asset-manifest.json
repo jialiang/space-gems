@@ -1,9 +1,0 @@
-{
-  "bundle.css": "bundle.d8460.css",
-  "bundle.js": "bundle.e57d5.esm.js",
-  "bundle.js.map": "bundle.e57d5.esm.js.map",
-  "polyfills.js": "polyfills.e9f6c.esm.js",
-  "polyfills.js.map": "polyfills.e9f6c.esm.js.map",
-  "bundle.d8460.css.map": "bundle.d8460.css.map",
-  "manifest.json": "manifest.json"
-}

@@ -7,8 +7,8 @@
     "node": "20.x"
   },
   "scripts": {
-    "build": "preact build --no-sw --no-prerender",
-    "serve": "sirv build --port 8080 --cors --single",
+    "build": "preact build --no-sw --no-prerender --dest dist",
+    "serve": "sirv dist --port 8080 --cors --single",
     "dev": "preact watch",
     "postbuild": "react-snap",
     "format": "prettier --write .",
@@ -46,6 +46,7 @@
     "react-snap": "^1.23.0"
   },
   "reactSnap": {
+    "source": "dist",
     "inlineCss": true
   }
 }

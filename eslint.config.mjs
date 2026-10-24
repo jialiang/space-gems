@@ -5,7 +5,7 @@ import js from "@eslint/js";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 export default defineConfig([
-  globalIgnores(["build/", "docs/"]),
+  globalIgnores(["dist/"]),
   {
     files: ["src/**/*.js"],
     extends: [importX.flatConfigs.recommended],
