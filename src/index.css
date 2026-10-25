@@ -26,13 +26,13 @@ body {
 #root {
   overflow: hidden;
   color: white;
-  font-size: 1.5em;
-  line-height: 1.5;
+  font-size: 1.4em;
+  line-height: 1.33;
 }
 
-@media (max-width: 22.5em), (max-height: 22.5em) {
+@media (max-width: 22.5em) {
   #root {
-    font-size: 6.67vmin;
+    font-size: 6vmin;
   }
 }
 
@@ -54,7 +54,7 @@ section {
   box-sizing: border-box;
   box-shadow: 0 0 10vmin inset black;
   border-radius: 1em;
-  width: 80vmin;
+  width: 85vmin;
   height: 90vh;
   overflow: hidden;
 }
@@ -143,6 +143,7 @@ button:active {
 }
 
 h1 {
+  font-size: 1.6em;
   line-height: 1;
 }
 
@@ -178,15 +179,15 @@ li {
 
 #game {
   background: rgba(0, 0, 0, 0.6);
-  height: 90vmin;
+  height: 95vmin;
 }
 
 .board {
   position: relative;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath fill='rgba(0, 0, 0, 0.65)' d='M0 0h12v12H0zm12 12h12v12H12z'/%3E%3C/svg%3E");
-  background-size: 20vmin 20vmin;
-  width: 80vmin;
-  height: 80vmin;
+  background-size: 21.25vmin 21.25vmin;
+  width: 85vmin;
+  height: 85vmin;
   overflow: hidden;
   touch-action: none;
   font-size: 0;
@@ -207,8 +208,8 @@ li {
   background-position: 50% 50%;
   background-size: 80% 80%;
   background-repeat: no-repeat;
-  width: 10vmin;
-  height: 10vmin;
+  width: 10.625vmin;
+  height: 10.625vmin;
   user-select: none;
 }
 
@@ -252,11 +253,6 @@ li {
   white-space: nowrap;
 }
 
-.top-bar span {
-  display: inline-block;
-  vertical-align: middle;
-}
-
 .top-bar b {
   margin-left: 0.5vmin;
   font-size: 5vmin;
@@ -270,7 +266,7 @@ li {
 }
 
 .score {
-  width: 30.5vmin;
+  width: 33vmin;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -281,7 +277,7 @@ li {
 }
 
 .time {
-  width: 30.5vmin;
+  width: 33vmin;
   text-align: right;
 }
 
