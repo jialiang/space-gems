@@ -7,6 +7,7 @@
     "node": "20.x"
   },
   "scripts": {
+    "prebuild": "svgo --recursive --folder src/images",
     "build": "preact build --no-sw --no-prerender --no-inline-css --dest dist",
     "serve": "http-server dist --port 8080 --cors",
     "dev": "preact watch",
@@ -29,10 +30,13 @@
     "eslint-plugin-import-x": "^4.17.1",
     "globals": "^17.13.0",
     "http-server": "^14.1.1",
+    "mini-svg-data-uri": "^1.4.4",
     "nodemon": "^3.1.14",
     "preact-cli": "^3.5.1",
     "prettier": "^3.9.10",
     "prettier-plugin-css-order": "^2.2.0",
+    "svgo": "^4.1.0",
+    "url-loader": "^4.1.1",
     "webpack": "^4.47.0"
   },
   "dependencies": {

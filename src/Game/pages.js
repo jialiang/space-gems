@@ -51,7 +51,7 @@ export const playingPage = ({
       if (remainingTime === timeLimit)
         style.transitionDelay = `${(index * START_GEM_DROP_DURATION) / 1000}s`;
 
-      if (destroyed) style.transform += " scale(0)";
+      if (destroyed) style.transform += " scale(0.01)";
 
       return (
         <span
