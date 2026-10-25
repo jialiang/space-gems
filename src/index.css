@@ -1,26 +1,6 @@
-@font-face {
-  font-style: normal;
-  font-weight: bold;
-  src:
-    url("./fonts/Roboto-Bold.woff2") format("woff2"),
-    url("./fonts/Roboto-Bold.woff") format("woff");
-  font-family: "Roboto";
-  font-display: swap;
-}
-
-@font-face {
-  font-style: normal;
-  font-weight: normal;
-  src:
-    url("./fonts/Roboto-Regular.woff2") format("woff2"),
-    url("./fonts/Roboto-Regular.woff") format("woff");
-  font-family: "Roboto";
-  font-display: swap;
-}
-
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
 }
 
 #root {

@@ -11,7 +11,7 @@
     "build": "preact build --no-sw --no-prerender --no-inline-css --dest dist",
     "serve": "http-server dist --port 8080 --cors",
     "dev": "preact watch",
-    "watch": "nodemon --watch src --watch preact.config.js --ext js,json,css,html,avif,jpg,png,mp3,woff,woff2 --exec \"npm run build\"",
+    "watch": "nodemon --watch src --watch preact.config.js --ext js,json,css,html,avif,jpg,png,mp3 --exec \"npm run build\"",
     "postbuild": "react-snap",
     "format": "prettier --write .",
     "lint": "eslint ."
@@ -46,7 +46,6 @@
   },
   "reactSnap": {
     "source": "dist",
-    "publicPath": "/space-gems",
     "inlineCss": true,
     "puppeteerArgs": [
       "--no-sandbox",
