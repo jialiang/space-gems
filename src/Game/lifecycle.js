@@ -1,5 +1,5 @@
+import { START_GEM_DROP_DURATION, TRANSITION_DURATION } from "./constants";
 import { createBoard, createGem } from "./utilities";
-import { TRANSITION_DURATION, START_GEM_DROP_DURATION } from "./constants";
 
 export const startGame = ({
   rowCount,

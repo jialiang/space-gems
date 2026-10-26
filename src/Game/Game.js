@@ -1,26 +1,26 @@
 import { Component } from "preact";
 
-import { gemsReducer, scoreReducer, statsReducer } from "./reducers";
+import { TIMES_UP_SCREEN_DURATION, TRANSITION_DURATION } from "./constants";
 import {
+  handleChangePage,
   handleGemMouseDown,
   handleGemMouseEnter,
   handleTouchMove,
-  handleChangePage,
 } from "./handlers";
-import { dispatchCreator, soundManager } from "./utilities";
 import {
+  cleanupGems,
+  destroyGems,
+  dropGems,
+  findMatches,
+  next,
+  replaceDestroyedGems,
   startCountDown,
   startGame,
   swapGems,
-  findMatches,
-  destroyGems,
-  replaceDestroyedGems,
-  dropGems,
-  cleanupGems,
-  next,
 } from "./lifecycle";
-import { startPage, playingPage, menuPage, creditsPage } from "./pages";
-import { TRANSITION_DURATION, TIMES_UP_SCREEN_DURATION } from "./constants";
+import { creditsPage, menuPage, playingPage, startPage } from "./pages";
+import { gemsReducer, scoreReducer, statsReducer } from "./reducers";
+import { dispatchCreator, soundManager } from "./utilities";
 
 const backgroundWidths = [640, 960, 1280, 1920, 2560];
 
